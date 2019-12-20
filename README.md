@@ -1,2 +1,2 @@
-# ADSM
-Anneal denoising score matching
+# MDSM
+Multiscale Denoising Score Matching
