@@ -1,0 +1,13 @@
+python sample.py \
+--n_chan 64 \
+--n_samples_save 30000 \
+--batch_size 1024 \
+--n_gpus 2 \
+--dataset 'fmnist' \
+--annealing_schedule 'exp' \
+--sample_mode 'all' \
+--save_every 5000 \
+--net_indx 100000 \
+--log 'fmnist_EBM' \
+--time '2020_02_18_22_23_39' \
+--file_name 'netE_MDSM' 

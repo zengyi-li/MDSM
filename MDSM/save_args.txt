@@ -1,0 +1,5 @@
+{
+  "seed": 8,
+  "resume": "a/b/c.ckpt",
+  "surgery": "190"
+}

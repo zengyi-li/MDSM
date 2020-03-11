@@ -1,0 +1,13 @@
+python sample.py \
+--n_chan 128 \
+--n_samples_save 50000 \
+--batch_size 1024 \
+--n_gpus 2 \
+--dataset 'cifar' \
+--annealing_schedule 'exp' \
+--sample_mode 'single' \
+--save_every 5000 \
+--net_indx 270000 \
+--log 'CIFAR_BEST' \
+--time '' \
+--file_name 'netE' 
