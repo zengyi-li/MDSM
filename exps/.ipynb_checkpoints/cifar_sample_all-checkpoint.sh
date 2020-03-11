@@ -1,0 +1,12 @@
+python sample.py \
+--n_chan 128 \
+--batch_size 256 \
+--n_gpus 2 \
+--dataset 'cifar' \
+--annealing_schedule 'exp' \
+--sample_mode 'all' \
+--save_every 5000 \
+--net_indx 5000 \
+--log 'CIFAR_EBM' \
+--time '2020_02_16_04_08_21' \
+--file_name 'netE' 
