@@ -4,7 +4,7 @@ python sample.py \
 --n_gpus 2 \
 --dataset 'cifar' \
 --annealing_schedule 'exp' \
---sample_mode 'single' \
+--sample_mode 'all' \
 --save_every 5000 \
 --net_indx 5000 \
 --log 'CIFAR_EBM' \

@@ -13,7 +13,6 @@ import cfg
 from torchvision.utils import save_image, make_grid
 
 from models.ResNet import Res12_Quadratic, Res18_Quadratic
-from models.SE_ResNet import SE_Res18_Quadratic, Swish
 from functions.sampling import Langevin_E, SS_denoise,  Annealed_Langevin_E,Reverse_AIS_sampling,AIS_sampling
 from functions.analysis import save_sample_pdf
 
@@ -25,8 +24,8 @@ def main():
     
     if args.dataset == 'cifar':
         sample_x = torch.zeros((args.batch_size,3,32,32))
-        #netE = Res18_Quadratic(3,args.n_chan,32,normalize=False,AF=nn.ELU())
-        netE = SE_Res18_Quadratic(3,args.n_chan,32,normalize=False,AF=Swish())
+        netE = Res18_Quadratic(3,args.n_chan,32,normalize=False,AF=nn.ELU())
+        
         
     elif args.dataset == 'mnist':
         sample_x = torch.zeros((args.batch_size,1,32,32))
@@ -100,13 +99,13 @@ def main():
             
             print('generating samples for '+ filename)
             denoise_samples = []
-            for j in range(n_batches):
+            for i in range(n_batches):
                 initial_x = 0.5+torch.randn_like(sample_x).to(device)
                 x_list,E_trace = Annealed_Langevin_E(netE,initial_x,args.sample_step_size,T,100)
                 print(str(len(x_list)))
                 x_denoise = SS_denoise(x_list[-1].to(device),netE,0.1)
                 denoise_samples.append(x_denoise)
-                print('batch {}/{} finished'.format((j+1),n_batches))
+                print('batch {}/{} finished'.format((i+1),n_batches))
             denoise_samples = torch.cat(denoise_samples,0)
             save_sample_pdf(denoise_samples[0:256],(16,16),root + '/samples/' + args.dataset +'_256samples_'+str(i)+'knet_denoise.pdf')
             

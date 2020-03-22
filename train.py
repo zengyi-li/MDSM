@@ -15,6 +15,7 @@ from torchvision.utils import save_image, make_grid
 from tensorboardX import SummaryWriter
 
 from models.ResNet import Res12_Quadratic, Res18_Quadratic, Res34_Quadratic
+from models.SE_ResNet import SE_Res18_Quadratic, Swish
 
 import pdb
 
@@ -29,7 +30,9 @@ def main():
     if args.dataset == 'cifar':
         from data.cifar import inf_train_gen
         itr = inf_train_gen(args.batch_size,flip=False)
-        netE = Res18_Quadratic(3,args.n_chan,32,normalize=False,AF=nn.ELU())
+        #netE = Res18_Quadratic(3,args.n_chan,32,normalize=False,AF=nn.ELU())
+        netE = SE_Res18_Quadratic(3,args.n_chan,32,normalize=False,AF=Swish())
+        
         
     elif args.dataset == 'mnist':
         from data.mnist_32 import inf_train_gen
@@ -83,6 +86,9 @@ def main():
     
     elif args.lr_schedule == 'cosine':
         scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizerE,args.n_iter,eta_min=1e-6,last_epoch=-1)
+        
+    elif args.lr_schedule == 'const':
+        scheduler = torch.optim.lr_scheduler.StepLR(optimizerE,int(args.n_iter))
         
     #train
     print_interval = 50
