@@ -25,7 +25,7 @@ Generate more samples from one network (modify --log argument to folder name and
 sh exps/cifar_sample_single.sh
 
 # Pretrained models
-download pretrained cifar model at (sorry but this check point only works for 2 GPUs at this point):
+download pretrained cifar model at (need to wrap model with DataParallel to work properly):
 https://drive.google.com/open?id=18uH6UJJjjrdTX8qAf4YMNKFtBmW5o60k 
 unpack to logs folder
 
