@@ -15,7 +15,7 @@ from torchvision.utils import save_image, make_grid
 from tensorboardX import SummaryWriter
 
 from models.ResNet import Res12_Quadratic, Res18_Quadratic, Res34_Quadratic
-from models.SE_ResNet import SE_Res18_Quadratic, Swish
+#from models.SE_ResNet import SE_Res18_Quadratic, Swish
 
 import pdb
 
@@ -30,8 +30,8 @@ def main():
     if args.dataset == 'cifar':
         from data.cifar import inf_train_gen
         itr = inf_train_gen(args.batch_size,flip=False)
-        #netE = Res18_Quadratic(3,args.n_chan,32,normalize=False,AF=nn.ELU())
-        netE = SE_Res18_Quadratic(3,args.n_chan,32,normalize=False,AF=Swish())
+        netE = Res18_Quadratic(3,args.n_chan,32,normalize=False,AF=nn.ELU())
+        #netE = SE_Res18_Quadratic(3,args.n_chan,32,normalize=False,AF=Swish())
         
         
     elif args.dataset == 'mnist':
