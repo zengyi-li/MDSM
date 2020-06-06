@@ -13,7 +13,6 @@ import cfg
 from torchvision.utils import save_image, make_grid
 
 from models.ResNet import Res12_Quadratic, Res18_Quadratic
-from models.SE_ResNet import SE_Res18_Quadratic, Swish
 from functions.sampling import Langevin_E, SS_denoise,  Annealed_Langevin_E,Reverse_AIS_sampling,AIS_sampling
 from functions.analysis import save_sample_pdf
 
